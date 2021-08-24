@@ -23,6 +23,19 @@ const addPets = (pet) => {
   });
 };
 
-addPets({ id: 3, name: "coco", age: 3 })
-  .then(getPets)
-  .catch((err) => console.log(err.message));
+// addPets({ id: 3, name: "coco", age: 3 })
+//   .then(getPets)
+//   .catch((err) => console.log(err.message));
+
+const promise1 = Promise.resolve("promise 1");
+
+const promise2 = new Promise((resolve, reject) =>
+  setTimeout(resolve, 5000, "promise 2")
+);
+const promise3 = new Promise((resolve, reject) =>
+  setTimeout(resolve, 2000, "promise 3")
+);
+
+Promise.all([promise1, promise2, promise3]).then((result) =>
+  console.log(result)
+);
