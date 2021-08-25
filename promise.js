@@ -23,9 +23,9 @@ const addPets = (pet) => {
   });
 };
 
-// addPets({ id: 3, name: "coco", age: 3 })
-//   .then(getPets)
-//   .catch((err) => console.log(err.message));
+addPets({ id: 3, name: "coco", age: 3 })
+  .then(getPets)
+  .catch((err) => console.log(err.message));
 
 const promise1 = Promise.resolve("promise 1");
 
@@ -39,3 +39,15 @@ const promise3 = new Promise((resolve, reject) =>
 Promise.all([promise1, promise2, promise3]).then((result) =>
   console.log(result)
 );
+const promise4 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "one");
+});
+
+const promise5 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 500, "two");
+});
+
+Promise.race([promise4, promise5]).then((value) => {
+  console.log(value);
+  // Both resolve, but promise2 is faster
+});
